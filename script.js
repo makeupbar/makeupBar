@@ -11,4 +11,10 @@ makeup.items = function(brand, productType,price) {
 
 makeup.items('maybelline', 'lipstick', 20);
 
-// let productType = ["bronzer", "lip_liner"]
+//Pick ten brands for users to select
+//Maybelline, l'oreal, milani, colorpop, covergirl (shoppers brands)
+// clinique, fenty, benefit, smashbox, dior (sephora)
+//Category - blush, bronzer, eyebrow, eyeliner, eyeshadow, foundation, lip liner, lipstick, mascara, nail polish
+//price range - 0-20; 20-40; 40-60; 60+
+
+
