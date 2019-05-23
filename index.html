@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>makeup bar</title>
 </head>
 <body>
   <form action="">
-    <!-- price -->
-    <!-- brand -->
-    <!-- category -->
 
     
     <select name="category" id="category">
-      <option value="category">category</option>
+      <option value="category" disabled selected>category</option>
      <option value="blush">blush</option>
      <option value="bronzer">bronzer</option>
      <option value="eyebrow">eyebrow</option>
@@ -29,7 +26,7 @@
 
    
     <select name="brand" id="brand">
-      <option value="brand">brand</option>
+      <option value="brand" disabled selected>brand</option>
       <option value="maybelline">maybelline</option>
       <option value="l'oreal">l'oreal</option>
       <option value="milani">milani</option>
@@ -42,9 +39,18 @@
       <option value="dior">dior</option>
     </select>
     <select name="price" id="price">
-      <option value="price">price</option>
+      <option value="price" disabled selected>price</option>
+      <option value="0-20">0-20</option>
+      <option value="20-40">20-40</option>
+      <option value="40-60">40-60</option>
+      <option value="60+">60+</option>
+      
     </select>
+    <input type="submit" value="submit">
   </form>
+
+    <div class="recommendations" id = "recommendations">  </div>
+
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
   <script src="script.js"></script>
 </body>
