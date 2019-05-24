@@ -65,6 +65,10 @@ makeup.init = function() {
     const userCategory = $category.children("option:selected").val();
     const userBrand = $brand.children("option:selected").val();
     const userPrice = $price.children("option:selected").val();
+    
+    if(userCategory == "category" || userBrand == "brand" || userPrice =="price"){
+      console.log(true);
+    }
 
     const userResults = $(`<div>selected category = ${userCategory} selected brand = ${userBrand} selected price = ${userPrice}</div>`);
     $('.recommendations').append(userResults);
@@ -91,6 +95,8 @@ makeup.init = function() {
       makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
     
     }
+
+
     // selectElements.each(function(){
     //   const value = $(this).children("option:selected").val();
     //   console.log(value);
