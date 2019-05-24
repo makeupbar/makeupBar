@@ -63,7 +63,10 @@ makeup.init = function() {
     const userCategory = $category.children("option:selected").val();
     const userBrand = $brand.children("option:selected").val();
     const userPrice = $price.children("option:selected").val();
-
+    
+    if(userCategory == "category" || userBrand == "brand" || userPrice =="price"){
+      console.log(true);
+    }
     if (userPrice == "60+"){
       let greaterThanPrice = 60;
       let lessThanPrice = 1000;
@@ -85,6 +88,8 @@ makeup.init = function() {
       makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
     
     }
+
+
     // selectElements.each(function(){
     //   const value = $(this).children("option:selected").val();
     //   console.log(value);
