@@ -25,6 +25,7 @@ makeup.displayItems = function(results){
   results.forEach(item => {
     const $productContainer = $('<div>').attr("class", "productContainer");
     const { name, image_link, price, description, product_link, product_colors} = item;
+
     console.log(name, image_link, price, description, product_link, product_colors);
     const $image = $(`<img src=${image_link} alt=${name} >`);
     const $colorContainer = $("<div>");
@@ -43,7 +44,6 @@ makeup.displayItems = function(results){
   })
 };
 
-// makeup.getItems('maybelline', 'lipstick', 20);
 
 //Pick ten brands for users to select
 //Maybelline, l'oreal, milani, colorpop, covergirl (shoppers brands)
@@ -54,6 +54,8 @@ makeup.displayItems = function(results){
 
 makeup.init = function() {
   $('form').on('submit', function(e){
+    $('.recommendations').empty();
+
     e.preventDefault();
     const $selectElements = $("select");
     const $category = $('#category');
@@ -67,6 +69,11 @@ makeup.init = function() {
     if(userCategory == "category" || userBrand == "brand" || userPrice =="price"){
       console.log(true);
     }
+
+    const userResults = $(`<div>selected category = ${userCategory} selected brand = ${userBrand} selected price = ${userPrice}</div>`);
+    $('.recommendations').append(userResults);
+
+
     if (userPrice == "60+"){
       let greaterThanPrice = 60;
       let lessThanPrice = 1000;
