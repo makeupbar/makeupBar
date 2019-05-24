@@ -15,7 +15,7 @@ makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
       price_greater_than: greaterThanPrice
     }
   }).then(function(results){
-   
+   console.log(makeup)
     makeup.displayItems(results);
     // add append html function
   });
