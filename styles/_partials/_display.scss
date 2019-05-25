@@ -162,6 +162,14 @@ h3{
     .productContainer{
         width: calc(50% - 20px);
     }
+    .modal{
+        bottom: -20%;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+
 }
 @media (max-width: 700px) {
     .productContainer{
@@ -178,6 +186,17 @@ h3{
     }
     header{
         height: 60vh;
+    }
+     .modal{
+        height: 300px;
+        button{
+            width: 60%;
+            padding: 10px;
+        }
+    }
+    h4{
+        font-size: 1.3rem;
+        padding: 30px;
     }
 }
 @media (max-width: 500px) {
@@ -196,17 +215,7 @@ h3{
     form{
         padding: 30px;
     }
-    .modal{
-        height: 300px;
-        button{
-            width: 60%;
-            padding: 10px;
-        }
-    }
-    h4{
-        font-size: 1.3rem;
-        padding: 30px;
-    }
+   
 }
 @media (max-width: 410px) {
     .productImage{
@@ -229,5 +238,8 @@ h3{
     }
     [type="submit"]{
         padding: 20px;
+    }
+    h4{
+        font-size: 0.9rem;
     }
 }

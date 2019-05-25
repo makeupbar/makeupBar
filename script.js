@@ -1,5 +1,5 @@
 const makeup = {};
-// ?brand = ${ brand }& product_type=${ productType }& price_less_than=${ lessThanPrice }& price_greater_than=${ greaterThanPrice }
+
 
 makeup.modal = function () {
   $(".goBack").click(function () {
@@ -19,18 +19,18 @@ makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
       price_greater_than: greaterThanPrice
     }
   }).then(function(results){
-    console.log(makeup)
+    
     makeup.displayItems(results);
   });
 }
-//image, description, title, price, product url. 
+
 makeup.displayItems = function(results){
-  console.log(results.length);
+  
   const resultNum = $(`<h2>there are ${results.length} results</h2>`);
   $('.searchResult').prepend(resultNum);
   let tabIndex = 2;
   results.forEach((item, index) => {
-    // console.log(index);
+    
     const $productContainer = $(`<div>`).attr("class", "productContainer");
     const { name, image_link, price, description, product_link, product_colors} = item;
 
@@ -49,7 +49,7 @@ makeup.displayItems = function(results){
     const $title = $(`<h3> ${name}</h3>`);
     const $price =$(`<div class="price">$ ${decimalPrice}</div>`);
     const $description = $(`<div class="description"> ${description}</div>`);
-    console.log(index);
+   
     const $productLink = $(`<div class="storeLink" tabindex=${index + 10}><a class="productLink" href=${product_link}>Go to Store</a></div>`);
     
     $productContainer.append($image, $colorContainer, $title, $price, $description, $productLink);
@@ -58,19 +58,12 @@ makeup.displayItems = function(results){
 };
 
 
-//Pick ten brands for users to select
-//Maybelline, l'oreal, milani, colorpop, covergirl (shoppers brands)
-// clinique, fenty, benefit, smashbox, dior (sephora)
-//Category - blush, bronzer, eyebrow, eyeliner, eyeshadow, foundation, lip liner, lipstick, mascara, nail polish
-//price range - 0-20; 20-40; 40-60; 60+
-
 
 makeup.init = function() {
   $('form').on('submit', function(e){
     $('.recommendations').empty();
 
     e.preventDefault();
-    const $selectElements = $("select");
     const $category = $('#category');
     const $brand = $('#brand');
     const $price = $('#price');
@@ -81,7 +74,6 @@ makeup.init = function() {
     
     if(userCategory == "category" || userBrand == "brand"){
       $(".modalContainer").show(200);
-      console.log(true);
           makeup.modal();
       
     }
