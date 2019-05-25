@@ -15,9 +15,8 @@ makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
       price_greater_than: greaterThanPrice
     }
   }).then(function(results){
-   console.log(makeup)
+    console.log(makeup)
     makeup.displayItems(results);
-    // add append html function
   });
 }
 //image, description, title, price, product url. 
@@ -26,7 +25,6 @@ makeup.displayItems = function(results){
     const $productContainer = $('<div>').attr("class", "productContainer");
     const { name, image_link, price, description, product_link, product_colors} = item;
 
-    console.log(name, image_link, price, description, product_link, product_colors);
     const $image = $(`<div class="productImage"><img src=${image_link} alt=${name} ></div>`);
     const $colorContainer = $("<ul class='colorSwatches'> </ul>");
     const $color = product_colors.forEach(item => {
@@ -100,14 +98,20 @@ makeup.init = function() {
     
     }
 
-
-    // selectElements.each(function(){
-    //   const value = $(this).children("option:selected").val();
-    //   console.log(value);
-    // })
-    //.children("option:selected").val();
+    makeup.smoothScroll();
     
   })
 }
-
-makeup.init();
+makeup.smoothScroll = function(){
+  $('html, body').animate(
+    {
+      scrollTop: $($("input[type=submit]").attr('href')).offset().top,
+    },
+    500,
+    'linear'
+  )
+}
+$(function(){
+  $('h1').fadeIn('3000');
+  makeup.init();
+});
