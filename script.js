@@ -1,7 +1,11 @@
 const makeup = {};
 // ?brand = ${ brand }& product_type=${ productType }& price_less_than=${ lessThanPrice }& price_greater_than=${ greaterThanPrice }
 
-
+makeup.modal = function () {
+  $(".goBack").click(function () {
+    location.reload();
+  })
+}
 
 makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
   $.ajax({
@@ -21,25 +25,32 @@ makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
 }
 //image, description, title, price, product url. 
 makeup.displayItems = function(results){
-  results.forEach(item => {
-    const $productContainer = $('<div>').attr("class", "productContainer");
+  console.log(results.length);
+  const resultNum = $(`<h2>there are ${results.length} results</h2>`);
+  $('.searchResult').prepend(resultNum);
+  let tabIndex = 2;
+  results.forEach((item, index) => {
+    // console.log(index);
+    const $productContainer = $(`<div>`).attr("class", "productContainer");
     const { name, image_link, price, description, product_link, product_colors} = item;
 
-    const $image = $(`<div class="productImage"><img src=${image_link} alt=${name} ></div>`);
+    const $image = $(`<div class="productImage"><img src=${image_link} alt="${name}" ></div>`);
     const $colorContainer = $("<ul class='colorSwatches'> </ul>");
     const $color = product_colors.forEach(item => {
       const { hex_value, colour_name} = item;
       $colorLi = $(`
-        <li aria-live="polite" aria-label=${colour_name}>
-          <div class="swatchItem" style="background: ${hex_value};"></div>
+        <li aria-live="polite" aria-label="${colour_name}">
+          <div class="swatchItem" title="${colour_name}" style="background: ${hex_value};"></div>
         </li>
       `);
       $colorContainer.append($colorLi);
     });
+    const decimalPrice = (parseFloat(price).toFixed(2));
     const $title = $(`<h3> ${name}</h3>`);
-    const $price =$(`<div class="price">$ ${price}</div>`);
+    const $price =$(`<div class="price">$ ${decimalPrice}</div>`);
     const $description = $(`<div class="description"> ${description}</div>`);
-    const $productLink =$(`<a class="productLink" href=${product_link}>Go to Store</a>`);
+    console.log(index);
+    const $productLink = $(`<div class="storeLink" tabindex=${index + 10}><a class="productLink" href=${product_link}>Go to Store</a></div>`);
     
     $productContainer.append($image, $colorContainer, $title, $price, $description, $productLink);
     $(".recommendations").append($productContainer);
@@ -68,40 +79,43 @@ makeup.init = function() {
     const userBrand = $brand.children("option:selected").val();
     const userPrice = $price.children("option:selected").val();
     
-    if(userCategory == "category" || userBrand == "brand" || userPrice =="price"){
+    if(userCategory == "category" || userBrand == "brand"){
+      $(".modalContainer").show(200);
       console.log(true);
+          makeup.modal();
+      
     }
+      const userResults = $(`<div class="searchResult"><h2>selected category : ${userCategory}   selected brand: ${userBrand}   selected price : ${userPrice}</h2></div>`);
+      $('.recommendations').append(userResults);
 
-    const userResults = $(`<div class="searchResult">selected category = ${userCategory} selected brand = ${userBrand} selected price = ${userPrice}</div>`);
-    $('.recommendations').append(userResults);
 
-
-    if (userPrice == "60+"){
-      let greaterThanPrice = 60;
-      let lessThanPrice = 1000;
-      makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-    }
-    else if (userPrice === "40-60"){
-      let lessThanPrice = 60;
-      let greaterThanPrice = 40;
-      makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-    }
-    else if (userPrice == "20-40"){
-      let lessThanPrice = 40;
-      let greaterThanPrice = 20;
-      makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-    }
-    else {
-      let lessThanPrice = 20;
-      let greaterThanPrice = 0;
-      makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+      if (userPrice == "60+"){
+        let greaterThanPrice = 60;
+        let lessThanPrice = 1000;
+        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+      }
+      else if (userPrice === "40-60"){
+        let lessThanPrice = 60;
+        let greaterThanPrice = 40;
+        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+      }
+      else if (userPrice == "20-40"){
+        let lessThanPrice = 40;
+        let greaterThanPrice = 20;
+        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+      }
+      else {
+        let lessThanPrice = 20;
+        let greaterThanPrice = 0;
+        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+      
+      }
     
-    }
-
-    makeup.smoothScroll();
-    
+      makeup.smoothScroll();
+   
   })
 }
+
 makeup.smoothScroll = function(){
   $('html, body').animate(
     {
@@ -112,6 +126,7 @@ makeup.smoothScroll = function(){
   )
 }
 $(function(){
+
   $('h1').fadeIn('3000');
   makeup.init();
 });

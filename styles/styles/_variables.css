@@ -1,0 +1,58 @@
+html {
+  padding: 0;
+  margin: 0;
+  font-size: 125%; }
+
+h1, h2, h3, h4, p, a, button, ul, li {
+  padding: 0;
+  margin: 0; }
+
+.wrapper {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1440px;
+  min-width: 320px; }
+
+body {
+  background: #f1e4e8;
+  font-family: "Noto Sans", sans-serif; }
+
+header {
+  background-image: url("../assets/makeupBrushes.jpg");
+  height: 80vh;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative; }
+
+h1 {
+  font-family: "Raleway", sans-serif;
+  color: #ff5964;
+  text-align: center;
+  font-size: 5.8rem;
+  text-shadow: 1px 2px aliceblue;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none; }
+
+h2 {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1rem;
+  color: #5b2333;
+  text-transform: capitalize; }
+
+h3 {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 2.5rem;
+  color: #ff5964;
+  text-transform: capitalize; }
+
+h4 {
+  font-size: 2rem;
+  font-family: "Noto Sans", sans-serif; }
+
+
