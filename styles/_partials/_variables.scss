@@ -35,6 +35,7 @@ header {
     background-position: top center;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
 
 
 }
@@ -51,9 +52,22 @@ h1{
     display: none;
     
 }
+
+h2{
+    font-family: $bodyFont;
+    font-size:1rem;
+    color: $text;
+    text-transform: capitalize;
+}
+h3{
+    font-family: $bodyFont;
+    font-size: 2.5rem;
+    color: $secondary;
+    text-transform: capitalize;
+}
+
 h4{
     font-size: 2rem;
-    font-family: $bodyFont
-
-
+    font-family: $bodyFont;
 }
+
