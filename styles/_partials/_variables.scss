@@ -22,11 +22,11 @@ h1, h2, h3, h4, p, a, button, ul, li{
     width: 90%;
     max-width: 1440px;
     min-width: 320px;
-    background: $secondary;
 }
 
 body {
     background: $main;
+    font-family: $bodyFont;
 }
 
 header {

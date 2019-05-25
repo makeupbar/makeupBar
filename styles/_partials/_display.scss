@@ -1,6 +1,12 @@
+@import "./variables";
+
 form {
     padding: 50px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 select {
@@ -27,7 +33,7 @@ select {
     border: transparent;
     color: $text;
     padding: 30px;
-   margin: 30px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 .modal {
@@ -47,4 +53,68 @@ select {
         }
     }
 
+}
+
+
+.recommendations{
+    display: flex;
+    flex-wrap: wrap;
+}
+.searchResult{
+    width: 100%;
+    text-align: center;
+}
+.productContainer {
+    width: calc(33% - 20px);
+    background: #ffffffb3;
+    padding: 20px 20px 40px 20px;
+    margin: 10px;
+    text-align: center;
+}
+.productImage{
+    width: 65%;
+    margin: 10px auto 30px;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.description {
+    display: none;
+}
+h3{
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.price {
+    margin-bottom: 25px;
+}
+.productLink {
+    border: 3px solid $secondary;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: aliceblue;
+    background:$secondary;
+    &:hover {
+        background: #ff59647a;
+        border: 3px solid #ff59647a;
+    }
+}
+
+.colorSwatches {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    li {
+    list-style: none;
+    }
+}
+.swatchItem {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid aliceblue;
 }
