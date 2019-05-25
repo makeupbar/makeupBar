@@ -27,15 +27,19 @@ makeup.displayItems = function(results){
     const { name, image_link, price, description, product_link, product_colors} = item;
 
     console.log(name, image_link, price, description, product_link, product_colors);
-    const $image = $(`<img src=${image_link} alt=${name} >`);
-    const $colorContainer = $("<div>");
+    const $image = $(`<div class="productImage"><img src=${image_link} alt=${name} ></div>`);
+    const $colorContainer = $("<ul class='colorSwatches'> </ul>");
     const $color = product_colors.forEach(item => {
-      const {hex_value} = item;
-      $colorSpan = $('<span>').css('background',`${hex_value}`);
-      $colorContainer.append($colorSpan);
+      const { hex_value, colour_name} = item;
+      $colorLi = $(`
+        <li aria-live="polite" aria-label=${colour_name}>
+          <div class="swatchItem" style="background: ${hex_value};"></div>
+        </li>
+      `);
+      $colorContainer.append($colorLi);
     });
     const $title = $(`<h3> ${name}</h3>`);
-    const $price =$(`<div class="price">${price}</div>`);
+    const $price =$(`<div class="price">$ ${price}</div>`);
     const $description = $(`<div class="description"> ${description}</div>`);
     const $productLink =$(`<a class="productLink" href=${product_link}>Go to Store</a>`);
     
@@ -70,7 +74,7 @@ makeup.init = function() {
       console.log(true);
     }
 
-    const userResults = $(`<div>selected category = ${userCategory} selected brand = ${userBrand} selected price = ${userPrice}</div>`);
+    const userResults = $(`<div class="searchResult">selected category = ${userCategory} selected brand = ${userBrand} selected price = ${userPrice}</div>`);
     $('.recommendations').append(userResults);
 
 
