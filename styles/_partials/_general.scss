@@ -1,0 +1,49 @@
+html {
+    font-size: 125%;
+    background: white;
+}
+
+html, h1, h2, h3, h4, p, a, button, ul, li{
+    padding : 0;
+    margin: 0;
+}
+
+.wrapper {
+    margin : 0 auto;
+    width: 90%;
+}
+
+body {
+    background: $main;
+    font-family: $bodyFont;
+    max-width: 1440px;
+    min-width: 342px;
+    margin: 0 auto;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+h2,h3,h4{
+    font-family: $bodyFont;
+}
+
+h2{
+    font-size:1rem;
+    color: $text;
+    text-transform: capitalize;
+}
+
+h3{
+    color: $secondary;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+h4{
+    font-size: 2rem;
+}

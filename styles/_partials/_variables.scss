@@ -1,73 +1,14 @@
+// ==========================================
+// color
+// ==========================================
 $main: rgba(241, 228, 232, 1);
+$secondary: rgba(255, 89, 100, 1);
 $tertiary: rgba(226, 220, 222, 1);
 $text: rgba(91, 35, 51, 1);
 $accent: aliceblue;
-$secondary: rgba(255, 89, 100, 1);
 
+// ==========================================
+// font family
+// ==========================================
 $headerFont: 'Raleway', sans-serif;
 $bodyFont: 'Noto Sans', sans-serif;
-
-html {
-    padding: 0;
-    margin: 0;
-    font-size: 125%
-}
-h1, h2, h3, h4, p, a, button, ul, li{
-    padding : 0;
-    margin: 0;
-}
-
-.wrapper {
-    margin : 0 auto;
-    width: 90%;
-    max-width: 1440px;
-    min-width: 320px;
-}
-
-body {
-    background: $main;
-    font-family: $bodyFont;
-}
-
-header {
-    background-image: url("../assets/makeupBrushes.jpg");
-    height: 80vh;
-    background-position: top center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-
-
-}
-h1{
-    font-family: $headerFont;
-    color:$secondary;
-    text-align: center;
-    font-size: 5.8rem;
-    text-shadow: 1px 2px aliceblue;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    
-}
-
-h2{
-    font-family: $bodyFont;
-    font-size:1rem;
-    color: $text;
-    text-transform: capitalize;
-}
-h3{
-    font-family: $bodyFont;
-    font-size: 2.5rem;
-    color: $secondary;
-    text-transform: capitalize;
-}
-
-h4{
-    font-size: 2rem;
-    font-family: $bodyFont;
-}
-

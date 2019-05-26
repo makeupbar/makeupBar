@@ -1,85 +1,20 @@
 @import "./variables";
 
-form {
-    padding: 50px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-select {
-    width: 80%;
-    padding: 30px;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-appearance: none;
-    margin-top: 30px;
-    border-radius: 20px;
-    border: transparent;
-    background-image: url("../assets/brDown.png");
-    float: left;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: 95% center;
-    text-transform: capitalize;
-}
-
-[type=submit]{
-    clear: both;
-    width: 30%;
-    background-color:$secondary;
-    border-radius: 40px;
-    border: transparent;
-    color: $accent;
-    padding: 30px;
-    margin: 30px auto 0 auto;
-    &:hover, &:active, &:focus{
-        background-color: $accent;
-        color: $secondary;
-    }
-}
-
-.modal {
-    background-color: $secondary;
-    border:$accent;
-    position: absolute;
-    z-index: 80;
-    bottom: -30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 30%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    h4{
-        color: $accent;
-        text-align: center;
-        padding: 50px;
-    }
-
-}
-.modal button {
-    background: $accent;
-    color: $secondary;
-    border-radius: 50px;
-    width: 30%;
-    padding: 10px;
-    border: transparent;
-    
-    
-}
-.modalContainer {
-    display: none;
-}
-
-
-.recommendations{
+.userSelected,
+.recommendations,
+.colorSwatches{
     display: flex;
     flex-wrap: wrap;
+}
+.userSelected {
+    justify-content: space-between;
+    text-align: center;
+    width: 75%;
+    margin: 20px auto;
+}
+
+.recommendations{
+    padding-bottom: 100px;
 }
 .searchResult{
     width: 100%;
@@ -97,24 +32,16 @@ select {
     width: 65%;
     margin: 10px auto 30px;
 }
-img{
-    width: 100%;
-    display: block;
-}
+
 .description {
     display: none;
 }
-h3{
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
+
 .price {
     margin-bottom: 55px;
     color: $text;
 }
 .productLink {
-    // border: 3px solid $secondary;
     padding: 10px 20px;
     margin-top: 20px;
     text-decoration: none;
@@ -123,12 +50,13 @@ h3{
     bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: aliceblue;
+    color: $accent;
     background:$secondary;
+    transition: all 0.4s;
     &:hover, &:focus, &:active {
         background: $accent;
         color: $secondary;
-        // border: 3px solid #ff59647a;
+        animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     }
 }
 .storeLink:focus a,
@@ -138,8 +66,6 @@ h3{
 }
 
 .colorSwatches {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     li {
     list-style: none;
@@ -149,97 +75,11 @@ h3{
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    border: 2px solid aliceblue;
+    border: 2px solid $main;
 }
 .searchResult {
     text-transform: capitalize;
     font-family: $bodyFont;
     color: $text;
     padding: 30px;
-}
-
-@media (max-width: 1110px) {
-    .productContainer{
-        width: calc(50% - 20px);
-    }
-    .modal{
-        bottom: -20%;
-    }
-
-    h4 {
-        font-size: 1.5rem;
-    }
-
-}
-@media (max-width: 700px) {
-    .productContainer{
-        width: 100%;
-        margin: 40px;
-    }
-    .productImage{
-        width: 40%;
-    }
-    h3{
-        margin: 0 auto 20px;
-        width: 60%;
-        text-align: center;
-    }
-    header{
-        height: 60vh;
-    }
-     .modal{
-        height: 300px;
-        button{
-            width: 60%;
-            padding: 10px;
-        }
-    }
-    h4{
-        font-size: 1.3rem;
-        padding: 30px;
-    }
-}
-@media (max-width: 500px) {
-    h1 {
-        font-size: 3.8rem;
-    }
-    [type="submit"]{
-        width: 70%;
-    }
-    .productContainer{
-        margin: 10px 0;
-    }
-    select {
-        width: 100%;
-    }
-    form{
-        padding: 30px;
-    }
-   
-}
-@media (max-width: 410px) {
-    .productImage{
-        width: 70%;
-    }
-    h3{
-        width: 70%;
-    }
-    
-}
-@media (max-width: 355px) {
-    h1{
-        font-size: 3.2rem;
-    }
-    .productImage{
-        width: 80%;
-    }
-    h3{
-        width: 100%;
-    }
-    [type="submit"]{
-        padding: 20px;
-    }
-    h4{
-        font-size: 0.9rem;
-    }
 }

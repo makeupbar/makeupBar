@@ -1,15 +1,19 @@
 const makeup = {};
 
 
-makeup.modal = function () {
-  $(".goBack").click(function () {
-    location.reload();
-  })
+makeup.modal = function (category, brand) {
+  if (category == "category" || brand == "brand") {
+    $(".modalContainer").show(200);
+    $(".goBack").click(function () {
+      location.reload();
+    })
+  }
 }
+
 
 makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
   $.ajax({
-    url: `http://makeup-api.herokuapp.com/api/v1/products.json`,
+    url: `https://makeup-api.herokuapp.com/api/v1/products.json`,
     method: 'GET',
     dataType: 'json',
     data: {
@@ -19,18 +23,15 @@ makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
       price_greater_than: greaterThanPrice
     }
   }).then(function(results){
-    
     makeup.displayItems(results);
   });
 }
 
-makeup.displayItems = function(results){
-  
+
+makeup.displayItems = function(results){  
   const resultNum = $(`<h2>there are ${results.length} results</h2>`);
   $('.searchResult').prepend(resultNum);
-  let tabIndex = 2;
   results.forEach((item, index) => {
-    
     const $productContainer = $(`<div>`).attr("class", "productContainer");
     const { name, image_link, price, description, product_link, product_colors} = item;
 
@@ -49,7 +50,6 @@ makeup.displayItems = function(results){
     const $title = $(`<h3> ${name}</h3>`);
     const $price =$(`<div class="price">$ ${decimalPrice}</div>`);
     const $description = $(`<div class="description"> ${description}</div>`);
-   
     const $productLink = $(`<div class="storeLink" tabindex=${index + 10}><a class="productLink" href=${product_link}>Go to Store</a></div>`);
     
     $productContainer.append($image, $colorContainer, $title, $price, $description, $productLink);
@@ -58,12 +58,49 @@ makeup.displayItems = function(results){
 };
 
 
+makeup.searchResultsPara = function(category, brand, price) {
+  const userResults = $(`
+    <div class="searchResult">
+      <div class="userSelected">
+        <h2><em>selected category :</em> ${category}</h2>   
+        <h2><em>selected brand :</em> ${brand}</h2>
+        <h2><em>selected price :</em> ${price}</h2>
+      </div>
+    </div>
+  `);
+  $('.recommendations').append(userResults);
+}
+
+
+makeup.filterPriceResults = function(userPrice, userBrand, userCategory) {
+  if (userPrice == "60+") {
+    let greaterThanPrice = 60;
+    let lessThanPrice = 1000;
+    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+  }
+  else if (userPrice === "40-60") {
+    let lessThanPrice = 60;
+    let greaterThanPrice = 40;
+    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+  }
+  else if (userPrice == "20-40") {
+    let lessThanPrice = 40;
+    let greaterThanPrice = 20;
+    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+  }
+  else {
+    let lessThanPrice = 20;
+    let greaterThanPrice = 0;
+    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+  }
+}
+
 
 makeup.init = function() {
   $('form').on('submit', function(e){
+    e.preventDefault();
     $('.recommendations').empty();
 
-    e.preventDefault();
     const $category = $('#category');
     const $brand = $('#brand');
     const $price = $('#price');
@@ -72,41 +109,13 @@ makeup.init = function() {
     const userBrand = $brand.children("option:selected").val();
     const userPrice = $price.children("option:selected").val();
     
-    if(userCategory == "category" || userBrand == "brand"){
-      $(".modalContainer").show(200);
-          makeup.modal();
-      
-    }
-      const userResults = $(`<div class="searchResult"><h2>selected category : ${userCategory}   selected brand: ${userBrand}   selected price : ${userPrice}</h2></div>`);
-      $('.recommendations').append(userResults);
-
-
-      if (userPrice == "60+"){
-        let greaterThanPrice = 60;
-        let lessThanPrice = 1000;
-        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-      }
-      else if (userPrice === "40-60"){
-        let lessThanPrice = 60;
-        let greaterThanPrice = 40;
-        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-      }
-      else if (userPrice == "20-40"){
-        let lessThanPrice = 40;
-        let greaterThanPrice = 20;
-        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-      }
-      else {
-        let lessThanPrice = 20;
-        let greaterThanPrice = 0;
-        makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
-      
-      }
-    
-      makeup.smoothScroll();
-   
+    makeup.modal(userCategory, userBrand);
+    makeup.searchResultsPara(userCategory, userBrand, userPrice);
+    makeup.filterPriceResults(userPrice, userBrand, userCategory);
+    makeup.smoothScroll();
   })
 }
+
 
 makeup.smoothScroll = function(){
   $('html, body').animate(
@@ -117,8 +126,9 @@ makeup.smoothScroll = function(){
     'linear'
   )
 }
-$(function(){
 
-  $('h1').fadeIn('3000');
+
+$(function(){
+  $('h1').fadeIn('5000');
   makeup.init();
 });

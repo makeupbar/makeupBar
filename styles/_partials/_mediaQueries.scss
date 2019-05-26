@@ -1,0 +1,93 @@
+@media (max-width: 1110px) {
+    .productContainer{
+        width: calc(50% - 20px);
+    }
+    .modal{
+        bottom: -20%;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+    .userSelected{
+        width: 95%;
+    }
+}
+@media (max-width: 960px) {
+    .userSelected{
+        width: 100%;
+    }
+}
+@media (max-width: 850px){
+        .userSelected{
+        flex-direction: column;
+    }
+}
+@media (max-width: 710px) {
+    .productContainer{
+        width: 100%;
+        margin: 40px;
+    }
+    .productImage{
+        width: 40%;
+    }
+    h3{
+        margin: 0 auto 20px;
+        width: 60%;
+        text-align: center;
+    }
+    header{
+        height: 60vh;
+    }
+    .modal{
+        height: 300px;
+        button{
+            width: 60%;
+            padding: 10px;
+        }
+    }
+    h4{
+        font-size: 1.3rem;
+        padding: 30px;
+    }
+}
+@media (max-width: 500px) {
+    h1 {
+        font-size: 3.8rem;
+    }
+    [type="submit"]{
+        width: 70%;
+    }
+    .productContainer{
+        margin: 10px 0;
+    }
+    select {
+        width: 100%;
+    }
+    form{
+        padding: 30px;
+    }
+}
+@media (max-width: 410px) {
+    .productImage, 
+    h3{
+        width: 70%;
+    }    
+}
+@media (max-width: 355px) {
+    h1{
+        font-size: 3.2rem;
+    }
+    .productImage{
+        width: 80%;
+    }
+    h3{
+        width: 100%;
+    }
+    [type="submit"]{
+        padding: 20px;
+    }
+    h4{
+        font-size: 0.9rem;
+    }
+}
