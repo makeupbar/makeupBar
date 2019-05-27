@@ -1,7 +1,7 @@
-const makeup = {};
+const app = {};
 
 
-makeup.modal = function (category, brand) {
+app.modal = function (category, brand) {
   if (category == "category" || brand == "brand") {
     $(".modalContainer").show(200);
     $(".goBack").click(function () {
@@ -11,7 +11,7 @@ makeup.modal = function (category, brand) {
 }
 
 
-makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
+app.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
   $.ajax({
     url: `https://makeup-api.herokuapp.com/api/v1/products.json`,
     method: 'GET',
@@ -23,12 +23,12 @@ makeup.getItems = function(brand, productType,lessThanPrice, greaterThanPrice) {
       price_greater_than: greaterThanPrice
     }
   }).then(function(results){
-    makeup.displayItems(results);
+    app.displayItems(results);
   });
 }
 
 
-makeup.displayItems = function(results){  
+app.displayItems = function(results){  
   const resultNum = $(`<h2>there are ${results.length} results</h2>`);
   $('.searchResult').prepend(resultNum);
   results.forEach((item, index) => {
@@ -58,7 +58,7 @@ makeup.displayItems = function(results){
 };
 
 
-makeup.searchResultsPara = function(category, brand, price) {
+app.searchResultsPara = function(category, brand, price) {
   const userResults = $(`
     <div class="searchResult">
       <div class="userSelected">
@@ -72,31 +72,31 @@ makeup.searchResultsPara = function(category, brand, price) {
 }
 
 
-makeup.filterPriceResults = function(userPrice, userBrand, userCategory) {
+app.filterPriceResults = function(userPrice, userBrand, userCategory) {
   if (userPrice == "60+") {
     let greaterThanPrice = 60;
     let lessThanPrice = 1000;
-    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+    app.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
   }
   else if (userPrice === "40-60") {
     let lessThanPrice = 60;
     let greaterThanPrice = 40;
-    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+    app.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
   }
   else if (userPrice == "20-40") {
     let lessThanPrice = 40;
     let greaterThanPrice = 20;
-    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+    app.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
   }
   else {
     let lessThanPrice = 20;
     let greaterThanPrice = 0;
-    makeup.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
+    app.getItems(userBrand, userCategory, lessThanPrice, greaterThanPrice);
   }
 }
 
 
-makeup.init = function() {
+app.init = function() {
   $('form').on('submit', function(e){
     e.preventDefault();
     $('.recommendations').empty();
@@ -109,15 +109,15 @@ makeup.init = function() {
     const userBrand = $brand.children("option:selected").val();
     const userPrice = $price.children("option:selected").val();
     
-    makeup.modal(userCategory, userBrand);
-    makeup.searchResultsPara(userCategory, userBrand, userPrice);
-    makeup.filterPriceResults(userPrice, userBrand, userCategory);
-    makeup.smoothScroll();
+    app.modal(userCategory, userBrand);
+    app.searchResultsPara(userCategory, userBrand, userPrice);
+    app.filterPriceResults(userPrice, userBrand, userCategory);
+    app.smoothScroll();
   })
 }
 
 
-makeup.smoothScroll = function(){
+app.smoothScroll = function(){
   $('html, body').animate(
     {
       scrollTop: $($("input[type=submit]").attr('href')).offset().top,
@@ -130,5 +130,5 @@ makeup.smoothScroll = function(){
 
 $(function(){
   $('h1').fadeIn('5000');
-  makeup.init();
+  app.init();
 });
